@@ -1,14 +1,14 @@
-import { Inter } from 'next/font/google'
 import { fetchHouses } from './api/api';
 import { useQuery, useMutation } from "@tanstack/react-query";
+import { HouseCard } from "../components/HouseCard";
+import { IHouse } from "./../types";
 
-const inter = Inter({ subsets: ['latin'] })
 
-// type house = {
-//   name: string,
-//   description: string,
-//   price: number,
-// }[]
+type house = {
+  name: string,
+  description: string,
+  price: number,
+}[]
 
 // export const getStaticProps = async () => {
 //   const houses = await fetchHouses();
@@ -30,6 +30,8 @@ export const getServerSideProps = async () => {
 };
 
 export default function Home({ houses }: any) {
+  console.log('here', houses);
+
   const houseQuery = useQuery({
     queryKey: ['house'],
     queryFn: () => [...houses]
@@ -39,17 +41,18 @@ export default function Home({ houses }: any) {
   if (houseQuery.isError) return <pre>{JSON.stringify(houseQuery.error)}</pre>
 
   return (
-    <main
-      className={`flex min-h-screen items-center justify-between p-24  bg-slate-500${inter.className}`}
-    >
-      {houses?.map((house: any, index: number) =>
-        <div key={index}>
-          <h1>{house.attributes.name}</h1>
-          <p>{house.attributes.description}</p>
-          <p>${house.attributes.price}</p>
+    <main>
+      <div className='container mx-auto px-4'>
+        <h1 className='text-2xl font-bold px-2 py-2'>Ebuilding</h1>
+        <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-3'>
+          {houses?.map((house: any, index: number) =>
+            <div key={index}>
+              <HouseCard key={index} house={house.attributes} />
+            </div>
+          )
+          }
         </div>
-      )
-      }
+      </div>
     </main>
   )
 }

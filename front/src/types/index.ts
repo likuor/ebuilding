@@ -4,7 +4,7 @@ export interface IHouse {
 }
 
 export interface IHouseAttribute {
-  housename: string;
+  name: string;
   description: string;
   price: number;
   publishedAt: string;
