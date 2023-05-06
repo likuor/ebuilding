@@ -3,7 +3,7 @@ import { fetchHouses } from '../api/api';
 import { useQuery } from "@tanstack/react-query";
 import { HouseCard } from "../../components/HouseCard";
 import { IHouse } from "../../types/api";
-import { Layout } from "../../components/Layout/Layout";
+import { AuthLayout } from "../../components/Layout/AuthLayout/AuthLayout";
 
 export const Top = () => {
   const { isSuccess, isLoading, isError, error, data: houses } = useQuery(['houses'], fetchHouses)
@@ -12,12 +12,12 @@ export const Top = () => {
   if (isError) return <pre>{JSON.stringify(error)}</pre>
 
   return (
-    <Layout>
+    <AuthLayout>
       {isSuccess && houses?.map((house: IHouse) =>
         <HouseCard key={house.id} house={house.attributes} />
       )
       }
-    </Layout>
+    </AuthLayout>
   )
 }
 

@@ -1,6 +1,9 @@
-import { ILayout } from "../../types/ui";
+import { ILayout } from "../../../types/ui";
+import { useAuthCheck } from './hooks/useAuthCheck'
 
-export const Layout = ({ children }: ILayout) => {
+export const AuthLayout = ({ children }: ILayout) => {
+  useAuthCheck();
+
   return (
     <>
       <main>

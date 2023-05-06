@@ -27,3 +27,14 @@ export interface ICollectionResponse<T> {
   data: T;
   meta: IResourceMeta;
 }
+
+export type TcreateUser = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+export type TgetUser = {
+  email: string;
+  password: string;
+};

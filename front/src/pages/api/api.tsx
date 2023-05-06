@@ -1,11 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
-// import { ICollectionResponse, IHouse } from '@/types';
-
-// const api = axios.create({
-//   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-//   // headers: { Authorization: `Bearer ${process.env.BACKEND_API_KEY}` }
-// })
-
+import axios from 'axios';
+import { TcreateUser, TgetUser } from '../../types/api';
 
 export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses`)
   .then((res) => {
@@ -14,3 +8,27 @@ export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLI
   .catch(err => {
     console.log("err:", err);
   });
+
+// DB
+export const createUser = async ({ username, email, password }: TcreateUser) =>
+  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/signup`
+    , {
+      username,
+      email,
+      password,
+    }, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+
+export const getUser = async ({ email, password }: TgetUser) =>
+  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
+    , {
+      email,
+      password,
+    }, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
