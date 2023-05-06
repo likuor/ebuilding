@@ -9,7 +9,6 @@ import axios, { AxiosResponse } from 'axios';
 
 export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses`)
   .then((res) => {
-    console.log("res", res.data.data);
     return res.data.data
   })
   .catch(err => {

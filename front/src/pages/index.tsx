@@ -1,3 +1,4 @@
+import { GetServerSideProps } from "next";
 import { fetchHouses } from './api/api';
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { HouseCard } from "../components/HouseCard";
@@ -10,6 +11,7 @@ type house = {
   price: number,
 }[]
 
+// SSG
 // export const getStaticProps = async () => {
 //   const houses = await fetchHouses();
 //   return {
@@ -20,35 +22,30 @@ type house = {
 // }
 
 // SSR
-export const getServerSideProps = async () => {
-  const houses = await fetchHouses();
-  return {
-    props: {
-      houses
-    },
-  }
-};
+// export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = async () => {
+//   const houses = await fetchHouses();
 
-export default function Home({ houses }: any) {
-  console.log('here', houses);
+//   return {
+//     props: {
+//       houses
+//     }
+//   }
+// };
 
-  const houseQuery = useQuery({
-    queryKey: ['house'],
-    queryFn: () => [...houses]
-  })
+// export default function Home({ houses }: any) {
+export default function Home() {
+  const { isSuccess, isLoading, isError, error, data: houses } = useQuery(['houses'], fetchHouses)
 
-  if (houseQuery.isLoading) return '...Loading'
-  if (houseQuery.isError) return <pre>{JSON.stringify(houseQuery.error)}</pre>
+  if (isLoading) return <h2>...Loading</h2>
+  if (isError) return <pre>{JSON.stringify(error)}</pre>
 
   return (
     <main>
       <div className='container mx-auto px-4'>
         <h1 className='text-2xl font-bold px-2 py-2'>Ebuilding</h1>
         <div className='grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-3'>
-          {houses?.map((house: any, index: number) =>
-            <div key={index}>
-              <HouseCard key={index} house={house.attributes} />
-            </div>
+          {isSuccess && houses?.map((house: IHouse) =>
+            <HouseCard key={house.id} house={house.attributes} />
           )
           }
         </div>
