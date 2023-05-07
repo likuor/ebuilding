@@ -3,6 +3,10 @@ export interface IHouse {
   attributes: IHouseAttribute;
 }
 
+export interface IHouseProps {
+  houses: IHouse[];
+}
+
 export interface IHouseImages {
   data: {
     id: number;
@@ -14,7 +18,7 @@ export interface IHouseAttribute {
   name: string;
   description: string;
   price: number;
-  images?: IHouseImages;
+  images: IHouseImages;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
