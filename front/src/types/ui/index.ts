@@ -15,6 +15,7 @@ export interface IFormLayout {
 
 export interface IFormButton {
   text: string;
+  bgColor: string;
 }
 
 export interface IInputLabel {

@@ -51,7 +51,7 @@ const Login = () => {
 
         {/* Error */}
         {/* {error && <div>{error}</div>} */}
-        <FormButton text={"Login"} />
+        <FormButton text={"Login"} bgColor={'bg-purple-600'} />
       </FormLayout >
     </>
   );

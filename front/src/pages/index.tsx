@@ -1,4 +1,6 @@
 // import { GetServerSideProps } from "next";
+// import { IHouse } from "../types/api/index";
+// import { fetchHouses } from "../pages/api/api";
 import { PageTop } from './Top/index';
 
 
