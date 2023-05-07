@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
 import { fetchHouses } from '../api/api';
 import { useQuery } from "@tanstack/react-query";
-import { HouseCard } from "../../components/HouseCard";
+import { HouseCard } from "../../components/ui/HouseCard";
 import { IHouse } from "../../types/api";
-import { AuthLayout } from "../../components/Layout/AuthLayout/AuthLayout";
+import { AuthLayout } from "../../components/ui/AuthLayout/AuthLayout";
 
 export const Top = () => {
   const { isSuccess, isLoading, isError, error, data: houses } = useQuery(['houses'], fetchHouses)
