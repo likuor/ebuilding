@@ -1,5 +1,5 @@
 // import { GetServerSideProps } from "next";
-import { PageTop } from './Top/index';
+import PageTop from './Top/index';
 
 
 // SSG
