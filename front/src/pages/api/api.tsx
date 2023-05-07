@@ -11,7 +11,7 @@ export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLI
 
 // DB
 export const createUser = async ({ username, email, password }: TcreateUser) =>
-  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/signup`
+  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_SIGNUP}/api/auth/signup`
     , {
       username,
       email,
@@ -23,7 +23,7 @@ export const createUser = async ({ username, email, password }: TcreateUser) =>
   })
 
 export const getUser = async ({ email, password }: TgetUser) =>
-  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
+  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_SIGNUP}/api/auth/login`
     , {
       email,
       password,
