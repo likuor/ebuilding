@@ -1,10 +1,5 @@
 # ebuilding
 
-     Repository: [Doctor Appointment App](https://github.com/kubilaycakmak/doctor-appointment)   
-     My role: (Front-end) Making appointment availability page and Login auth page. Adjusting CSS, making atomic component like buttons.
-     React.js app connecting to mongoDB and Firebase with teammates. Deployed with Netlify.  
-     
-     
 -- Backend (CMS)
 cd back.   
 npm install.   
