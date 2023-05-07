@@ -1,32 +1,22 @@
-// import { GetServerSideProps } from "next";
-import { PageTop } from './Top/index';
-
-
-// SSG
-// export const getStaticProps = async () => {
-//   const houses = await fetchHouses();
-//   return {
-//     props: {
-//       houses
-//     },
-//   }
-// }
+import { GetServerSideProps } from "next";
+import { IHouse, IHouseProps } from '../types/api/index';
+import { fetchHouses } from "../pages/api/api";
+import { Top } from "../components/pages/top/Top";
 
 // SSR
-// export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = async () => {
-//   const houses = await fetchHouses();
+export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = async () => {
+  const houses = await fetchHouses();
 
-//   return {
-//     props: {
-//       houses
-//     }
-//   }
-// };
+  return {
+    props: {
+      houses
+    }
+  }
+};
 
-// export default function Home({ houses }: any) {
-export default function Home() {
+export default function Home({ houses }: IHouseProps) {
 
   return (
-    <PageTop />
+    <Top houses={houses} />
   )
 }

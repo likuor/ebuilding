@@ -1,14 +1,14 @@
 import Image from 'next/image'
-import { fetchHouses } from '../../../pages/api/api';
-import { useQuery } from "@tanstack/react-query";
 import { HouseCard } from "../../../components/ui/HouseCard";
-import { IHouse } from "../../../types/api";
 import { AuthLayout } from "../../../components/ui/AuthLayout/AuthLayout";
 import { Header } from '../../..//components/ui/Header/Header';
 import Link from 'next/link';
+import { IHouse, IHouseProps } from '../../../types/api/index';
+import { useFetchQuery } from '../../hooks/useFetchQuery';
 
-export const Top = () => {
-  const { isSuccess, isLoading, isError, error, data: houses } = useQuery(['houses'], fetchHouses)
+
+export const Top = ({ houses }: IHouseProps) => {
+  const { isSuccess, isLoading, isError, error, housesData } = useFetchQuery(houses)
 
   if (isLoading) return <h2>...Loading</h2>
   if (isError) return <pre>{JSON.stringify(error)}</pre>
@@ -45,8 +45,8 @@ export const Top = () => {
         {/* <!--Posts Container--> */}
         {/* <!--1/3 col --> */}
         <div className="flex flex-wrap justify-between pt-12 -mx-6">
-          {isSuccess && houses?.map((house: IHouse) => {
-            return <HouseCard house={house.attributes} key={house.id} />
+          {isSuccess && housesData?.map((house: IHouse) => {
+            return <HouseCard house={house} key={house.id} />
           }
           )}
         </div>
