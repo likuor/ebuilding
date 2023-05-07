@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { getUser } from '../api/api';
+import { FormLayout } from '../../components/ui/Form/Layout/FormLayout';
+import { FormButton } from '../../components/ui/Form/FormButton';
+import { InputLabel } from '../../components/ui/Form/InputLabel';
 
 
 const Login = () => {
@@ -38,16 +41,18 @@ const Login = () => {
   }
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="email">Email</label>
-        <input onChange={changeHandler} value={email} type="email" name="email" id="email" />
-        <label htmlFor="password">パスワード</label>
-        <input onChange={changeHandler} value={password} type="password" name="password" id="password" />
-        {error && <div>{error}</div>}
-        <button type="submit">
-          Login
-        </button>
-      </form>
+      <FormLayout title={'Hello again'} desc={'Login to your account'} onSubmit={submitHandler}>
+        <InputLabel label="Email" type="email" onChange={changeHandler} value={email} htmlfor='email' id='email' name="email" />
+        <InputLabel label="Password" type="password" onChange={changeHandler} value={password} htmlfor='password' id='password' name="password" />
+        {/* Password forget */}
+        {/* <div className="flex justify-end">
+            <a href="#" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Forgot your password?</a>
+          </div> */}
+
+        {/* Error */}
+        {/* {error && <div>{error}</div>} */}
+        <FormButton text={"Login"} />
+      </FormLayout >
     </>
   );
 };
