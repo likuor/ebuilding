@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { createUser } from '../api/api';
+import { FormLayout } from '../../components/ui/Form/Layout/FormLayout';
+import { FormButton } from '../../components/ui/Form/FormButton';
+import { InputLabel } from '../../components/ui/Form/InputLabel';
+import Link from 'next/link';
 
-const Signin = () => {
+const Signup = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,20 +44,21 @@ const Signin = () => {
 
   return (
     <>
-      <form onSubmit={submitHandler} >
-        <label htmlFor="username">User name</label>
-        <input onChange={changeHandler} value={username} type="text" name="username" id="username" />
-        <label htmlFor="email">Email</label>
-        <input onChange={changeHandler} value={email} type="email" name="email" id="email" />
-        <label htmlFor="password">Password</label>
-        <input onChange={changeHandler} value={password} type="password" name="password" id="password" />
-        {error && <div>{error}</div>}
-        <button type="submit">
-          Sign uo
-        </button>
-      </form>
+      <FormLayout title={'Welcom to ebuilding'} desc={'Signup to your account'} onSubmit={submitHandler}>
+        <InputLabel label="User name" type="text" onChange={changeHandler} value={username} htmlfor='username' id='username' name="username" />
+        <InputLabel label="Email" type="email" onChange={changeHandler} value={email} htmlfor='email' id='email' name="email" />
+        <InputLabel label="Password" type="password" onChange={changeHandler} value={password} htmlfor='password' id='password' name="password" />
+        {/* Password forget */}
+        <div className="flex justify-end">
+          <Link href="/login" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Already have an account</Link>
+        </div>
+
+        {/* Error */}
+        {/* {error && <div>{error}</div>} */}
+        <FormButton text={"Sign up"} />
+      </FormLayout >
     </>
   )
 }
 
-export default Signin
+export default Signup
