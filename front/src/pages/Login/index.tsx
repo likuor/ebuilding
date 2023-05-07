@@ -6,7 +6,7 @@ import { FormButton } from '../../components/ui/Form/FormButton';
 import { InputLabel } from '../../components/ui/Form/InputLabel';
 
 
-const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -56,5 +56,3 @@ const Login = () => {
     </>
   );
 };
-
-export default Login
