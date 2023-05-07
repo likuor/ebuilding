@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { TcreateUser, TgetUser } from '../../types/api';
 
-export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses`)
+export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses?populate=images`)
   .then((res) => {
     return res.data.data
   })

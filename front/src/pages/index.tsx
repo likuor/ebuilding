@@ -1,5 +1,5 @@
 // import { GetServerSideProps } from "next";
-import { Top } from './Top/index';
+import { PageTop } from './Top/index';
 
 
 // SSG
@@ -27,6 +27,6 @@ import { Top } from './Top/index';
 export default function Home() {
 
   return (
-    <Top />
+    <PageTop />
   )
 }
