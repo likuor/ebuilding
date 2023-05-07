@@ -1,6 +1,6 @@
 # ebuilding
 
--- Backend (CMS)
+-- Backend (CMS).   
 cd back.   
 npm install.   
 npm run develop.   
