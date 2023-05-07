@@ -1,36 +1,34 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import { IHouse, IHouseAttribute } from "../../types/api";
+import Link from 'next/link';
 
-// import { formatDate, myLoader } from '../helper/Helper';
-
-// type house = {
-//   name: string,
-//   description: string,
-//   price: number,
-// }[]
+const urlBuilder = (src: string) => `${process.env.NEXT_PUBLIC_API_BASE_STRAPI_URL}` + src;
 
 export const HouseCard = ({ house }: any) => {
   return (
-    <div className='container mx-auto px-4 py-4'>
-      <Link href={'/article/' + house.name}>
-        <div>
-          {/* <Image
-            loader={myLoader}
-            width={500}
-            height={300}
-            alt={house.heroImage.fields.description}
-            src={house.heroImage.fields.file.url}
-            priority
-            className='rounded-t-3xl'
-          /> */}
+    <>
+      <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
+        <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
+          <Link href="/" className="flex flex-wrap no-underline hover:no-underline">
+            <Image loader={() => urlBuilder(`${house?.images?.data[0]?.attributes?.url}`)}
+              alt={`${house?.images?.data[0]?.attributes?.name}`}
+              width={800}
+              height={600}
+              src={urlBuilder(`${house?.attributes?.images?.data[0]?.attributes?.url}`)}
+              className="h-64 w-full rounded-t pb-6"
+            />
+            <p className="w-full text-gray-600 text-xs md:text-sm px-6">{house.price}</p>
+            <div className="w-full font-bold text-xl text-gray-900 px-6">{house.name}</div>
+            <p className="text-gray-800 font-serif text-base px-6 mb-5">
+              {house.description}
+            </p>
+          </Link>
         </div>
-        <div className='container mx-auto px-4 py-4 bg-gray-100 rounded-b-3xl'>
-          <h4 className='text-1xl font-bold'>{house.description}</h4>
-          <h4 className='text-1xl font-bold'>${house.price}</h4>
-          {/* <p className='text-gray-400'>{formatDate(article.publishDate)}</p> */}
+        <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
+          <div className="flex items-center justify-between">
+            <p className="text-gray-600 text-xs md:text-sm">{house.updatedAt}</p>
+          </div>
         </div>
-      </Link>
-    </div>
+      </div>
+    </>
   );
 };
