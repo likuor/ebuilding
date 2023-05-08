@@ -3,8 +3,12 @@ export interface IHouse {
   attributes: IHouseAttribute;
 }
 
-export interface IHouseProps {
+export interface ISSRHouseProps {
   houses: IHouse[];
+}
+
+export interface IHouseProps {
+  housesData: IHouse[];
 }
 
 export interface IHouseCardProps {

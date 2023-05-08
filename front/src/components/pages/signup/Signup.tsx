@@ -5,6 +5,7 @@ import { FormLayout } from '../../../components/ui/Form/Layout/FormLayout';
 import { FormButton } from '../../../components/ui/Form/FormButton';
 import { InputLabel } from '../../../components/ui/Form/InputLabel';
 import { validEmail } from "../../../helper/validation/validation";
+import { commonText } from "../../../common/commonText.json";
 import Link from 'next/link';
 
 const Signup = () => {
@@ -44,12 +45,12 @@ const Signup = () => {
 
   return (
     <>
-      <FormLayout title={'Welcom to ebuilding'} desc={'Signup to your account'} onSubmit={submitHandler} error={error}>
+      <FormLayout title={commonText.signup.title} desc={commonText.signup.desc} onSubmit={submitHandler} error={error}>
         <InputLabel label="User name" type="text" onChange={changeHandler} value={username} htmlfor='username' id='username' name="username" />
         <InputLabel label="Email" type="email" onChange={changeHandler} value={email} htmlfor='email' id='email' name="email" />
         <InputLabel label="Password" type="password" onChange={changeHandler} value={password} htmlfor='password' id='password' name="password" />
         <div className="flex justify-end">
-          <Link href="/login" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Already have an account</Link>
+          <Link href="/login" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">{commonText.signup.link}</Link>
         </div>
         <FormButton text={"Sign up"} bgColor={'bg-purple-600'} />
       </FormLayout >
