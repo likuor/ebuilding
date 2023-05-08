@@ -16,7 +16,7 @@ const Login = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const checkEmail = validEmail(email);
-    if (checkEmail.status === false) return
+    if (checkEmail.status === false) return setError('Your email is not allowed');
 
     const res = await getUser({ email, password });
     const resUserInfo = res.data;
