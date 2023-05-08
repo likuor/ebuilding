@@ -4,19 +4,19 @@ import { fetchHouses } from "../helper/api";
 import { Top } from "../components/pages/top/Top";
 
 // SSR
-export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = async () => {
-  const houses = await fetchHouses();
+export const getServerSideProps: GetServerSideProps<{ housesData: IHouse[] }> = async () => {
+  const housesData = await fetchHouses();
 
   return {
     props: {
-      houses
+      housesData
     }
   }
 };
 
-export default function Home({ houses }: IHouseProps) {
+export default function Home({ housesData }: IHouseProps) {
 
   return (
-    <Top houses={houses} />
+    <Top housesData={housesData} />
   )
 }

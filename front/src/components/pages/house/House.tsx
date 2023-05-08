@@ -2,10 +2,10 @@ import { IHouseProps } from '../../../types/api/index';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-export default function House({ houses }: IHouseProps) {
+export default function House({ housesData }: IHouseProps) {
   const router = useRouter()
   const { id } = router.query
-  const house = houses.filter((house) => {
+  const house = housesData.filter((house) => {
     return house.id.toString() === id
   })
   const urlBuilder = (src: string) => `${process.env.NEXT_PUBLIC_API_BASE_STRAPI_URL}` + src;
