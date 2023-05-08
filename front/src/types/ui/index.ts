@@ -2,10 +2,6 @@ export interface ILayout {
   children: string | JSX.Element | JSX.Element[];
 }
 
-export interface IFlexBox {
-  children: string | JSX.Element | JSX.Element[];
-}
-
 export interface IFormLayout {
   title: string;
   desc: string;

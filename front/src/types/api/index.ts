@@ -7,6 +7,10 @@ export interface IHouseProps {
   houses: IHouse[];
 }
 
+export interface IHouseCardProps {
+  house: IHouse;
+}
+
 export interface IHouseImages {
   data: {
     id: number;
@@ -24,7 +28,7 @@ export interface IHouseAttribute {
   updatedAt: string;
 }
 
-export interface IHouseImagesAttribute {
+export type IHouseImagesAttribute = {
   alternativeText: string | null;
   caption: string | null;
   createdAt: string;
@@ -40,23 +44,7 @@ export interface IHouseImagesAttribute {
   updatedAt: string;
   url: string;
   width: number;
-}
-
-export interface IPagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-export interface IResourceMeta {
-  pagenation: IPagination;
-}
-
-export interface ICollectionResponse<T> {
-  data: T;
-  meta: IResourceMeta;
-}
+};
 
 export type TcreateUser = {
   username: string;
