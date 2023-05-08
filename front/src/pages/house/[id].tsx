@@ -1,9 +1,8 @@
 import { GetServerSideProps } from "next";
 import { IHouse, IHouseProps } from '../../types/api/index';
-import { fetchHouses } from "../../pages/api/api";
+import { fetchHouses } from "../../helper/api";
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = async () => {
   const houses = await fetchHouses();
