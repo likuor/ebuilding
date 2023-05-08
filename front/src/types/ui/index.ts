@@ -11,6 +11,7 @@ export interface IFormLayout {
   desc: string;
   children: string | JSX.Element | JSX.Element[];
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  error?: string;
 }
 
 export interface IFormButton {
