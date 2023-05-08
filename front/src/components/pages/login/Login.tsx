@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { getUser } from '../../../pages/api/api';
+import { getUser } from '../../../helper/api';
 import { FormLayout } from '../../../components/ui/Form/Layout/FormLayout';
 import { FormButton } from '../../../components/ui/Form/FormButton';
 import { InputLabel } from '../../../components/ui/Form/InputLabel';
+import { validEmail } from "../../../helper/validation/validation";
 
 
 const Login = () => {
@@ -14,12 +15,14 @@ const Login = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const checkEmail = validEmail(email);
+    if (checkEmail.status === false) return
 
     const res = await getUser({ email, password });
 
     const resUserInfo = res.data;
     if (resUserInfo.token) {
-      alert('Login Success');
+      // alert('Login Success');
       localStorage.setItem('token', resUserInfo.token);
       router.push('/');
     } else {
@@ -29,10 +32,9 @@ const Login = () => {
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
     switch (name) {
       case "email":
-        setEmail(value);
+        setEmail(value)
         break;
       case "password":
         setPassword(value);

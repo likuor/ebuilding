@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
 import { IHouse, IHouseProps } from '../types/api/index';
-import { fetchHouses } from "../pages/api/api";
+import { fetchHouses } from "../helper/api";
 import { Top } from "../components/pages/top/Top";
 
 // SSR
