@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TcreateUser, TgetUser } from '../../types/api';
+import { TcreateUser, TgetUser } from '../types/api';
 
 export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses?populate=images`)
   .then((res) => {
@@ -19,7 +19,7 @@ export const createUser = async ({ username, email, password }: TcreateUser) =>
     }, {
     headers: {
       "Content-Type": "application/json",
-    },
+    }
   })
 
 export const getUser = async ({ email, password }: TgetUser) =>

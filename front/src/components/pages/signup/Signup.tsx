@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { createUser } from '../../../pages/api/api';
+import { createUser } from '../../../helper/api';
 import { FormLayout } from '../../../components/ui/Form/Layout/FormLayout';
 import { FormButton } from '../../../components/ui/Form/FormButton';
 import { InputLabel } from '../../../components/ui/Form/InputLabel';
+import { validEmail } from "../../../helper/validation/validation";
 import Link from 'next/link';
 
 const Signup = () => {
@@ -15,6 +16,8 @@ const Signup = () => {
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const checkEmail = validEmail(email);
+    if (checkEmail.status === false) return
 
     const res = await createUser({ username, email, password });
 
