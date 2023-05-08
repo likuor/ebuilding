@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { HouseCard } from "../../../components/ui/HouseCard";
+import { HouseCard } from "../../ui/House/HouseCard";
 import { AuthLayout } from "../../../components/ui/AuthLayout/AuthLayout";
 import { Header } from '../../..//components/ui/Header/Header';
 import Link from 'next/link';

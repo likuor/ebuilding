@@ -1,10 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { IHouseCardProps } from "../../../types/api";
 
 const urlBuilder = (src: string) => `${process.env.NEXT_PUBLIC_API_BASE_STRAPI_URL}` + src;
 
 
-export const HouseCard = ({ house }: any) => {
+export const HouseCard = ({ house }: IHouseCardProps) => {
   return (
     <>
       <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
@@ -14,7 +15,7 @@ export const HouseCard = ({ house }: any) => {
               alt={`${house.attributes?.images?.data[0]?.attributes?.name}`}
               width={800}
               height={600}
-              src={urlBuilder(`${house.attributes?.attributes?.images?.data[0]?.attributes?.url}`)}
+              src={urlBuilder(`${house.attributes?.images?.data[0]?.attributes?.url}`)}
               className="h-64 w-full rounded-t pb-6"
             />
             <p className="w-full text-gray-600 text-xs md:text-sm px-6">{house.attributes.price}</p>
