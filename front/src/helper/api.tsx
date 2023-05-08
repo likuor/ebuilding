@@ -22,8 +22,8 @@ export const createUser = async ({ username, email, password }: TcreateUser) =>
     }
   })
 
-export const getUser = async ({ email, password }: TgetUser) =>
-  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
+export const getUser = async ({ email, password }: TgetUser) => {
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
     , {
       email,
       password,
@@ -31,4 +31,11 @@ export const getUser = async ({ email, password }: TgetUser) =>
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((res) => {
+    return res
   })
+    .catch(err => {
+      return err.response
+    });
+  return res
+}
