@@ -32,7 +32,12 @@ export type IHouseImagesAttribute = {
   alternativeText: string | null;
   caption: string | null;
   createdAt: string;
-  formats: any;
+  formats: {
+    large: TImagesFormats;
+    medium: TImagesFormats;
+    small: TImagesFormats;
+    thumbnail: TImagesFormats;
+  };
   hash?: { data: [] } | undefined;
   height: number;
   mime: string;
@@ -42,6 +47,18 @@ export type IHouseImagesAttribute = {
   provider_metadata: string | null;
   size: number;
   updatedAt: string;
+  url: string;
+  width: number;
+};
+
+export type TImagesFormats = {
+  ext: string;
+  hash: string;
+  height: number;
+  mime: string;
+  name: string;
+  path: string | null;
+  size: number;
   url: string;
   width: number;
 };
