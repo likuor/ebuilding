@@ -14,6 +14,9 @@ export const getServerSideProps: GetServerSideProps<{ houses: IHouse[] }> = asyn
 };
 
 export default function Index({ houses }: IHouseProps) {
+
+  console.log(houses);
+
   return <House houses={houses} />
 }
 

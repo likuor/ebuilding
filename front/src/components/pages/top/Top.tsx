@@ -8,7 +8,7 @@ import { useFetchQuery } from '../../hooks/useFetchQuery';
 
 
 export const Top = ({ houses }: IHouseProps) => {
-  const { isSuccess, isLoading, isError, error, housesData } = useFetchQuery(houses)
+  const { isSuccess, isLoading, isError, error, housesData } = useFetchQuery({ houses })
 
   if (isLoading) return <h2>...Loading</h2>
   if (isError) return <pre>{JSON.stringify(error)}</pre>
