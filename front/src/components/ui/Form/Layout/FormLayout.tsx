@@ -1,6 +1,6 @@
 import { IFormLayout } from "../../../../types/ui";
 
-export const FormLayout = ({ title, desc, children, onSubmit }: IFormLayout) => {
+export const FormLayout = ({ title, desc, children, onSubmit, error }: IFormLayout) => {
 
   return (
     <>
@@ -12,6 +12,7 @@ export const FormLayout = ({ title, desc, children, onSubmit }: IFormLayout) => 
         <section className="mt-10">
           <form className='flex flex-col' onSubmit={onSubmit} >
             {children}
+            {error && <div className="mt-10 text-center text-red-600">{error}</div>}
           </form>
         </section>
       </main>

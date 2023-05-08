@@ -5,6 +5,7 @@ import { FormLayout } from '../../../components/ui/Form/Layout/FormLayout';
 import { FormButton } from '../../../components/ui/Form/FormButton';
 import { InputLabel } from '../../../components/ui/Form/InputLabel';
 import { validEmail } from "../../../helper/validation/validation";
+import { commonText } from "../../../common/commonText.json";
 import Link from 'next/link';
 
 const Signup = () => {
@@ -17,16 +18,13 @@ const Signup = () => {
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const checkEmail = validEmail(email);
-    if (checkEmail.status === false) return
+    if (checkEmail.status === false) return setError('Your email is not allowed');
 
     const res = await createUser({ username, email, password });
-
     const resUserInfo = res.data;
-    if (resUserInfo.created) {
-      router.push("/login");
-    } else {
-      setError(resUserInfo.message);
-    }
+    if (!resUserInfo.created) return setError(resUserInfo.message);
+
+    router.push("/login");
   };
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,17 +45,13 @@ const Signup = () => {
 
   return (
     <>
-      <FormLayout title={'Welcom to ebuilding'} desc={'Signup to your account'} onSubmit={submitHandler}>
+      <FormLayout title={commonText.signup.title} desc={commonText.signup.desc} onSubmit={submitHandler} error={error}>
         <InputLabel label="User name" type="text" onChange={changeHandler} value={username} htmlfor='username' id='username' name="username" />
         <InputLabel label="Email" type="email" onChange={changeHandler} value={email} htmlfor='email' id='email' name="email" />
         <InputLabel label="Password" type="password" onChange={changeHandler} value={password} htmlfor='password' id='password' name="password" />
-        {/* Password forget */}
         <div className="flex justify-end">
-          <Link href="/login" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">Already have an account</Link>
+          <Link href="/login" className="text-sm text-purple-600 hover:text-purple-700 hover:underline mb-6">{commonText.signup.link}</Link>
         </div>
-
-        {/* Error */}
-        {/* {error && <div>{error}</div>} */}
         <FormButton text={"Sign up"} bgColor={'bg-purple-600'} />
       </FormLayout >
     </>

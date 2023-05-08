@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { TcreateUser, TgetUser } from '../types/api';
 
+// CMS
 export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/api/houses?populate=images`)
   .then((res) => {
     return res.data.data
@@ -10,8 +11,8 @@ export const fetchHouses = async () => await axios.get(`${process.env.NEXT_PUBLI
   });
 
 // DB
-export const createUser = async ({ username, email, password }: TcreateUser) =>
-  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/signup`
+export const createUser = async ({ username, email, password }: TcreateUser) => {
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/signup`
     , {
       username,
       email,
@@ -20,10 +21,18 @@ export const createUser = async ({ username, email, password }: TcreateUser) =>
     headers: {
       "Content-Type": "application/json",
     }
+  }).then((res) => {
+    return res
   })
+    .catch(err => {
+      return err.response
+    });
 
-export const getUser = async ({ email, password }: TgetUser) =>
-  await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
+  return res
+}
+
+export const getUser = async ({ email, password }: TgetUser) => {
+  const res = await axios.post(`${process.env.NEXT_PUBLIC_API_FRONT_BASE_URL}/api/auth/login`
     , {
       email,
       password,
@@ -31,4 +40,11 @@ export const getUser = async ({ email, password }: TgetUser) =>
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((res) => {
+    return res
   })
+    .catch(err => {
+      return err.response
+    });
+  return res
+}

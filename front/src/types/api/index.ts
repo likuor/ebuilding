@@ -3,8 +3,16 @@ export interface IHouse {
   attributes: IHouseAttribute;
 }
 
-export interface IHouseProps {
+export interface ISSRHouseProps {
   houses: IHouse[];
+}
+
+export interface IHouseProps {
+  housesData: IHouse[];
+}
+
+export interface IHouseCardProps {
+  house: IHouse;
 }
 
 export interface IHouseImages {
@@ -24,11 +32,16 @@ export interface IHouseAttribute {
   updatedAt: string;
 }
 
-export interface IHouseImagesAttribute {
+export type IHouseImagesAttribute = {
   alternativeText: string | null;
   caption: string | null;
   createdAt: string;
-  formats: any;
+  formats: {
+    large: TImagesFormats;
+    medium: TImagesFormats;
+    small: TImagesFormats;
+    thumbnail: TImagesFormats;
+  };
   hash?: { data: [] } | undefined;
   height: number;
   mime: string;
@@ -40,23 +53,19 @@ export interface IHouseImagesAttribute {
   updatedAt: string;
   url: string;
   width: number;
-}
+};
 
-export interface IPagination {
-  page: number;
-  pageSize: number;
-  pageCount: number;
-  total: number;
-}
-
-export interface IResourceMeta {
-  pagenation: IPagination;
-}
-
-export interface ICollectionResponse<T> {
-  data: T;
-  meta: IResourceMeta;
-}
+export type TImagesFormats = {
+  ext: string;
+  hash: string;
+  height: number;
+  mime: string;
+  name: string;
+  path: string | null;
+  size: number;
+  url: string;
+  width: number;
+};
 
 export type TcreateUser = {
   username: string;

@@ -2,15 +2,12 @@ export interface ILayout {
   children: string | JSX.Element | JSX.Element[];
 }
 
-export interface IFlexBox {
-  children: string | JSX.Element | JSX.Element[];
-}
-
 export interface IFormLayout {
   title: string;
   desc: string;
   children: string | JSX.Element | JSX.Element[];
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+  error?: string;
 }
 
 export interface IFormButton {
